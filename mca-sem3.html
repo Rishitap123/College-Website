@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <style>
+        /* Style the buttons */
+        
+        .btn {
+            border: none;
+            outline: none;
+            padding: 20px 16px;
+            background-color: #e5eaf0;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        /* Add a light grey background on mouse-over */
+        
+        .btn:hover {
+            background-color: rgb(106, 166, 214);
+        }
+        /* Add a dark background to the active button */
+        
+        .btn.active {
+            background-color: #666;
+            color: white;
+        }
+    </style>
+    <h1>Subject</h1>
+    <!-- Control buttons -->
+    <div id="myBtnContainer">
+        <a href="TMC301_Design_and_Analysis_of_Algorithm.pdf" class="btn" onclick="filterSelection('TMC301 Design and Analysis of Algorithm')">TMC301 Design and Analysis of Algorithm</a>
+
+        <a href="Machine Learning with Python.pdf" class="btn" onclick="filterSelection('TMC302 Machine Learning using Python')">TMC302 Machine Learning using Python</a>
+
+        <a href="TMC303_Automata_Theory_and_Compiler_Construction.pdf" class="btn" onclick="filterSelection('TMC303 Automata Theory and Compiler Construction')">TMC303 Automata Theory and Compiler Construction</a>
+
+        <a href=".pdf" class="btn" onclick="filterSeleection('TMC304 ELECTIVE –II')">TMC304 ELECTIVE –II</a>
+
+        <a href="The Full Stack Developer_.pdf" class="btn" onclick="filterSelection('TMC305 Full Stack Web Development')">TMC305 Full Stack Web Development
+            </a>
+
+        <a href="TMC306 Enterprise Architecture using C# (.Net).pdf" class="btn" onclick="filterSelection('TMC306 Enterprise Architecture using C# (.Net)')">TMC306 Enterprise Architecture using C# (.Net)
+            </a>
+
+        <a href="TMC307 Graphics and Visual Computing.pdf" class="btn" onclick="filterSelection('TMC307 Graphics and Visual Computing')">TMC307 Graphics and Visual Computing</a>
+
+
+
+    </div>
+
+    <!-- The filterable elements. Note that some have multiple class names (this can be used if they belong to multiple categories) -->
+
+
+    <script>
+        filterSelection("all")
+
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("filterDiv");
+            if (c == "all") c = "";
+            // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        // Show filtered elements
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {
+                    element.className += " " + arr2[i];
+                }
+            }
+        }
+
+        // Hide elements that are not selected
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Add active class to the current control button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+</body>
+
+</html>
